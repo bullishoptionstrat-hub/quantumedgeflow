@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Edge Flow — Professional Financial Terminal</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0a0f;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .glow {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(251,191,36,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .container {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.3);
+      color: #fbbf24;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    h1 span { color: #fbbf24; }
+    p {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #fbbf24;
+      color: #0a0a0f;
+    }
+    .btn-primary:hover { background: #f59e0b; transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .feature {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: left;
+    }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .feature-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .feature-desc { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+    .footer { font-size: 0.8rem; color: #334155; }
+    .footer a { color: #475569; text-decoration: none; }
+    .footer a:hover { color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="container">
+    <div class="badge">Now Available</div>
+    <h1>The Terminal Built for<br><span>Serious Traders</span></h1>
+    <p>Quantum Edge Flow is a professional-grade desktop financial intelligence platform. Real-time data, AI-powered analysis, 15+ broker integrations, and 1300+ analytics scripts — all in one native app.</p>
+    <div class="buttons">
+      <a class="btn btn-primary" href="https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/latest">
+        ⬇ Download for Windows
+      </a>
+      <a class="btn btn-secondary" href="https://github.com/bullishoptionstrat-hub/quantumedgeflow">
+        ★ View on GitHub
+      </a>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Real-Time Data</div>
+        <div class="feature-desc">Live market feeds, options chains, and economic calendars</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI Assistant</div>
+        <div class="feature-desc">Quantum Edge AI embedded directly in the terminal</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Backtesting</div>
+        <div class="feature-desc">1300+ Python analytics scripts, VectorBT, and more</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">Broker Integrations</div>
+        <div class="feature-desc">Alpaca, Zerodha, Angel One, and 15+ more</div>
+      </div>
+    </div>
+    <div class="footer">
+      &copy; 2026 Quantum Edge Flow &nbsp;·&nbsp;
+      <a href="mailto:support@quantumedge.business">support@quantumedge.business</a>
+    </div>
+  </div>
+</body>
+</html>
