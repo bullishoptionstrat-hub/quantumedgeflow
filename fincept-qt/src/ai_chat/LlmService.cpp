@@ -313,7 +313,7 @@ QString LlmService::get_endpoint_url() const {
     // base_url_ stores the base domain; append path here.
     if (p == "fincept") {
         // sync endpoint for chat (short replies)
-        return "https://api.fincept.in/research/chat";
+        return "https://api.quantumedge.business/research/chat";
     }
 
     // Custom base_url takes priority for other providers
@@ -376,7 +376,7 @@ QMap<QString, QString> LlmService::get_headers() const {
             h["Authorization"] = "Bearer " + api_key_;
         if (p == "openrouter") {
             // Optional attribution — appears on openrouter.ai/rankings leaderboard
-            h["HTTP-Referer"] = "https://fincept.in";
+            h["HTTP-Referer"] = "https://quantumedge.business";
             h["X-Title"] = "Fincept Terminal";
         }
     }
@@ -563,7 +563,7 @@ LlmService::HttpResult LlmService::blocking_get(const QString& url, const QMap<Q
 // ============================================================================
 
 // Helper: synchronous POST/GET using QEventLoop on a background thread.
-// This is required for endpoints behind Cloudflare (like api.fincept.in)
+// This is required for endpoints behind Cloudflare (like api.quantumedge.business)
 // because QNetworkAccessManager needs an event loop to process TLS/SSL
 // negotiation and HTTP redirects. The waitForReadyRead() approach used by
 // blocking_post() works for some servers but fails for Cloudflare-protected ones.
@@ -698,8 +698,8 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
     // Temperature intentionally omitted — Fincept backend uses its own default.
 
     auto hdr = get_headers();
-    const QString async_url = "https://api.fincept.in/research/llm/async";
-    const QString status_base = "https://api.fincept.in/research/llm/status/";
+    const QString async_url = "https://api.quantumedge.business/research/llm/async";
+    const QString status_base = "https://api.quantumedge.business/research/llm/status/";
 
     LOG_INFO(TAG, QString("Fincept async: submitting to %1 (api_key=%2, prompt_len=%3)")
                       .arg(async_url)
@@ -1811,7 +1811,7 @@ QString LlmService::get_models_url(const QString& provider, const QString& api_k
     if (p == "kimi")
         return "https://api.moonshot.ai/v1/models";
     if (p == "fincept")
-        return "https://api.fincept.in/research/llm/models";
+        return "https://api.quantumedge.business/research/llm/models";
     // minimax: no public /v1/models endpoint — fallback models used instead
     return {};
 }

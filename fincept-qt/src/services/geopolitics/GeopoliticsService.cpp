@@ -17,7 +17,7 @@
 
 namespace fincept::services::geo {
 
-static constexpr const char* kApiBase = "https://api.fincept.in/research/news-events";
+static constexpr const char* kApiBase = "https://api.quantumedge.business/research/news-events";
 
 namespace {
 inline void publish_to_hub(const QString& topic, const QVariant& value) {

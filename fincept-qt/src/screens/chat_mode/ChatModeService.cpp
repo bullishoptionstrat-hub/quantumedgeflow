@@ -13,7 +13,7 @@
 
 namespace fincept::chat_mode {
 
-static constexpr const char* API_BASE = "https://api.fincept.in";
+static constexpr const char* API_BASE = "https://api.quantumedge.business";
 
 // ── Singleton ─────────────────────────────────────────────────────────────────
 

@@ -178,7 +178,7 @@ void DashboardStatusBar::set_connected(bool connected) {
 }
 
 void DashboardStatusBar::ping_api() {
-    QNetworkRequest req(QUrl("https://api.fincept.in/health"));
+    QNetworkRequest req(QUrl("https://api.quantumedge.business/health"));
     req.setTransferTimeout(5000);
     ping_elapsed_.restart();
     QNetworkReply* reply = nam_->get(req);

@@ -89,7 +89,7 @@ void EconomicCalendarWidget::refresh_data() {
     set_loading(true);
 
     // Response shape: {"success":true,"data":{"events":[...],"total_count":N,...}}
-    QString url = "https://api.fincept.in/macro/upcoming-events?limit=25";
+    QString url = "https://api.quantumedge.business/macro/upcoming-events?limit=25";
 
     fincept::HttpClient::instance().get(url, [this](fincept::Result<QJsonDocument> result) {
         set_loading(false);

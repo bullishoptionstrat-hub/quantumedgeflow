@@ -32,7 +32,7 @@ Result<void> apply_v002(QSqlDatabase& db) {
 
     // Insert default Fincept LLM
     sql(db, "INSERT OR IGNORE INTO llm_configs (provider, api_key, base_url, model, is_active) "
-            "VALUES ('fincept', '', 'https://api.fincept.in/research/llm', 'fincept-llm', 1)");
+            "VALUES ('fincept', '', 'https://api.quantumedge.business/research/llm', 'fincept-llm', 1)");
 
     // ── LLM Global Settings (singleton row) ──────────────────────────────────
     r = sql(db, "CREATE TABLE IF NOT EXISTS llm_global_settings ("

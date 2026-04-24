@@ -483,7 +483,7 @@ void PricingScreen::on_select_plan(const QString& plan_id) {
             return;
         }
 
-        QString url = QString("https://fincept.in/checkout?token=%1&plan=%2")
+        QString url = QString("https://quantumedge.business/checkout?token=%1&plan=%2")
                           .arg(QUrl::toPercentEncoding(token), QUrl::toPercentEncoding(plan_id));
         QDesktopServices::openUrl(QUrl(url));
 

@@ -22,7 +22,7 @@ void AppConfig::remove(const QString& key) {
 }
 
 QString AppConfig::api_base_url() const {
-    return settings_.value("api/base_url", "https://api.fincept.in").toString();
+    return settings_.value("api/base_url", "https://api.quantumedge.business").toString();
 }
 
 bool AppConfig::dark_mode() const {

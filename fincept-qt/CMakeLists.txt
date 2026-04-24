@@ -23,7 +23,7 @@ if(WIN32 AND CMAKE_HOST_WIN32)
     endif()
 endif()
 
-project(QuantumEdgeFlow VERSION 4.0.2 LANGUAGES CXX)
+project(QuantumEdgeFlow VERSION 4.0.3 LANGUAGES CXX)
 
 # Strip C/C++ flags out of RC invocations — rc.exe only understands /D, /I, /fo.
 if(WIN32)
