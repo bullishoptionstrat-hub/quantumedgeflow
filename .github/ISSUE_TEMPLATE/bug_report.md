@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug or unexpected behavior in Fincept Terminal
+about: Report a bug or unexpected behavior in Quantum Edge Flow
 title: "[BUG] "
 labels: "type:bug, status:triage"
 assignees: ""
@@ -17,7 +17,7 @@ assignees: ""
 
 ## Environment
 - **OS:** (Windows / macOS / Linux)
-- **Fincept Terminal Version:**
+- **Quantum Edge Flow Version:**
 - **Qt Version:**
 
 ## Error Logs

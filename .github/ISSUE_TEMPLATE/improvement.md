@@ -1,6 +1,6 @@
 ---
 name: Improvement Suggestion
-about: Suggest an enhancement to an existing feature in Fincept Terminal
+about: Suggest an enhancement to an existing feature in Quantum Edge Flow
 title: "[IMPROVE] "
 labels: "type:enhancement, status:triage"
 assignees: ""

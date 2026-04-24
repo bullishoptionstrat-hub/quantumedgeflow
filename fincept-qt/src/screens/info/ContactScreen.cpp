@@ -116,10 +116,10 @@ ContactScreen::ContactScreen(QWidget* parent) : QWidget(parent) {
         grid->setContentsMargins(14, 12, 14, 12);
         grid->setSpacing(10);
 
-        grid->addWidget(make_contact_card("EMAIL SUPPORT", "support@fincept.in", "Response within 4-6 hours"), 0, 0);
+        grid->addWidget(make_contact_card("EMAIL SUPPORT", "support@quantumedge.business", "Response within 4-6 hours"), 0, 0);
         grid->addWidget(make_contact_card("PHONE SUPPORT", "+1-800-FINCEPT", "Mon-Fri, 9AM-6PM EST"), 0, 1);
         grid->addWidget(make_contact_card("SUPPORT HOURS", "Mon-Fri 9AM-6PM EST", "Saturday 10AM-4PM EST"), 1, 0);
-        grid->addWidget(make_contact_card("OFFICE", "Fincept Corporation", "New York, United States"), 1, 1);
+        grid->addWidget(make_contact_card("OFFICE", "Quantum Edge", "New York, United States"), 1, 1);
 
         pvl->addWidget(body);
         vl->addWidget(panel);
@@ -155,7 +155,7 @@ ContactScreen::ContactScreen(QWidget* parent) : QWidget(parent) {
 
         auto* email_btn = make_action("Send Email");
         connect(email_btn, &QPushButton::clicked, this,
-                []() { QDesktopServices::openUrl(QUrl("mailto:support@fincept.in")); });
+                []() { QDesktopServices::openUrl(QUrl("mailto:support@quantumedge.business")); });
         hl->addWidget(email_btn);
 
         auto* discord_btn = make_action("Join Discord");
@@ -165,7 +165,7 @@ ContactScreen::ContactScreen(QWidget* parent) : QWidget(parent) {
 
         auto* github_btn = make_action("GitHub Issues");
         connect(github_btn, &QPushButton::clicked, this, []() {
-            QDesktopServices::openUrl(QUrl("https://github.com/Fincept-Corporation/FinceptTerminal/issues"));
+            QDesktopServices::openUrl(QUrl("https://github.com/bullishoptionstrat-hub/quantumedgeflow/issues"));
         });
         hl->addWidget(github_btn);
 
@@ -196,7 +196,7 @@ ContactScreen::ContactScreen(QWidget* parent) : QWidget(parent) {
         };
         const Issue issues[] = {
             {"Cannot log in or forgot password",
-             "Use the Forgot Password option on the login screen, or contact support@fincept.in"},
+             "Use the Forgot Password option on the login screen, or contact support@quantumedge.business"},
             {"Python setup fails or times out",
              "Ensure you have a stable internet connection. Retry setup or check firewall settings."},
             {"Data not loading or showing stale",

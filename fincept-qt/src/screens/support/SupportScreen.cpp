@@ -842,7 +842,7 @@ void SupportScreen::load_tickets() {
         // Demo ticket
         QJsonObject demo;
         demo["id"] = "DEMO-001";
-        demo["subject"] = "Welcome to Fincept Support";
+        demo["subject"] = "Welcome to Quantum Edge Support";
         demo["status"] = "resolved";
         demo["priority"] = "low";
         demo["category"] = "general";
@@ -995,7 +995,7 @@ void SupportScreen::load_tickets() {
                     mh->addStretch();
                     mh->addWidget(lbl("1 Jan 2026", ui::colors::TEXT_TERTIARY(), 10));
                     ml->addLayout(mh);
-                    auto* mb = lbl("Welcome to Fincept! This demo ticket shows how the support system works.\n"
+                    auto* mb = lbl("Welcome to Quantum Edge Flow! This demo ticket shows how the support system works.\n"
                                    "Create a real ticket and our team will respond within 24 hours.",
                                    ui::colors::TEXT_PRIMARY(), 12, false, true);
                     ml->addWidget(mb);

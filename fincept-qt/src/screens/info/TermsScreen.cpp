@@ -86,12 +86,12 @@ TermsScreen::TermsScreen(QWidget* parent) : QWidget(parent) {
 
     // Section 1
     pvl->addWidget(section_heading("1", "ACCEPTANCE OF TERMS"));
-    pvl->addWidget(body_text("By accessing or using Fincept Terminal (\"the Service\"), you agree to be bound by these "
+    pvl->addWidget(body_text("By accessing or using Quantum Edge Flow (\"the Service\"), you agree to be bound by these "
                              "Terms of Service. If you do not agree to these terms, do not use the Service."));
 
     // Section 2
     pvl->addWidget(section_heading("2", "DESCRIPTION OF SERVICE"));
-    pvl->addWidget(body_text("Fincept Terminal is a desktop financial intelligence terminal providing market data, "
+    pvl->addWidget(body_text("Quantum Edge Flow is a desktop financial intelligence terminal providing market data, "
                              "analytics, trading tools, and AI-powered research capabilities."));
 
     // Section 3
@@ -123,7 +123,7 @@ TermsScreen::TermsScreen(QWidget* parent) : QWidget(parent) {
     // Section 7
     pvl->addWidget(section_heading("7", "DISCLAIMERS AND LIMITATIONS"));
     pvl->addWidget(
-        body_text("The Service is provided \"as is\" without warranty of any kind. Fincept Corporation shall not "
+        body_text("The Service is provided \"as is\" without warranty of any kind. Quantum Edge shall not "
                   "be liable for any indirect, incidental, special, or consequential damages. Financial data "
                   "and analytics are for informational purposes only and do not constitute investment advice."));
 
@@ -139,7 +139,7 @@ TermsScreen::TermsScreen(QWidget* parent) : QWidget(parent) {
 
     // Section 10
     pvl->addWidget(section_heading("10", "CONTACT INFORMATION"));
-    pvl->addWidget(body_text("For questions about these Terms, contact us at support@fincept.in"));
+    pvl->addWidget(body_text("For questions about these Terms, contact us at support@quantumedge.business"));
 
     vl->addWidget(panel);
 

@@ -418,7 +418,7 @@ void SetupScreen::on_setup_done(bool success, const QString& error) {
 
     if (success) {
         LOG_INFO("SetupScreen", "Python setup completed — all steps done");
-        status_label_->setText("Everything is ready! Launching Fincept Terminal...");
+        status_label_->setText("Everything is ready! Launching Quantum Edge Flow...");
         status_label_->setStyleSheet(
             QString("color:%1; font-family:%2; font-size:10px; margin-top:6px;").arg(colors::GREEN(), fonts::DATA_FAMILY));
         begin_btn_->setText("LAUNCH");

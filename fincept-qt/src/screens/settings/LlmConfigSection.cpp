@@ -28,7 +28,7 @@ namespace fincept::screens {
 static constexpr const char* TAG = "LlmConfigSection";
 
 const QStringList LlmConfigSection::KNOWN_PROVIDERS = {"openai",  "anthropic", "gemini",   "groq",  "deepseek",
-                                                       "openrouter", "minimax", "kimi", "ollama", "xai",   "fincept"};
+                                                       "openrouter", "minimax", "kimi", "ollama", "xai",   "quantumedge"};
 
 QString LlmConfigSection::default_base_url(const QString& provider) {
     const QString p = provider.toLower();
@@ -52,7 +52,7 @@ QString LlmConfigSection::default_base_url(const QString& provider) {
         return "http://localhost:11434";
     if (p == "xai")
         return {};
-    if (p == "fincept")
+    if (p == "quantumedge")
         return {}; // endpoints are hardcoded in LlmService, no base_url needed
     return {};
 }
@@ -93,7 +93,7 @@ QStringList LlmConfigSection::fallback_models(const QString& provider) {
         return {"llama3.1:8b", "qwen2.5:7b", "mistral:7b"};
     if (p == "xai")
         return {"grok-4-latest", "grok-4", "grok-3", "grok-3-mini"};
-    if (p == "fincept")
+    if (p == "quantumedge")
         return {"MiniMax-M2.7", "MiniMax-M2.7-highspeed", "MiniMax-M2.5", "MiniMax-M2.5-highspeed"};
     return {};
 }
@@ -558,8 +558,8 @@ void LlmConfigSection::load_providers() {
     auto result = LlmConfigRepository::instance().list_providers();
     if (result.is_ok()) {
         for (const auto& p : result.value()) {
-            bool is_fincept = (p.provider.toLower() == "fincept");
-            QString display = is_fincept ? "Fincept LLM" : p.provider;
+            bool is_fincept = (p.provider.toLower() == "quantumedge");
+            QString display = is_fincept ? "Quantum Edge AI" : p.provider;
             if (p.is_active) {
                 display += "  ✓";
                 active_provider = p.provider;
@@ -612,7 +612,7 @@ void LlmConfigSection::load_providers() {
 void LlmConfigSection::populate_form(const QString& provider) {
     provider_edit_->setText(provider);
 
-    bool is_fincept = (provider.toLower() == "fincept");
+    bool is_fincept = (provider.toLower() == "quantumedge");
 
     // Populate model combo with fallback suggestions
     model_combo_->blockSignals(true);
@@ -645,12 +645,12 @@ void LlmConfigSection::populate_form(const QString& provider) {
 
             if (is_fincept) {
                 api_key_edit_->clear();
-                auto stored = SettingsRepository::instance().get("fincept_api_key");
+                auto stored = SettingsRepository::instance().get("quantumedge_api_key");
                 if (stored.is_ok() && !stored.value().isEmpty()) {
                     QString masked = stored.value().left(8) + "...";
-                    api_key_edit_->setPlaceholderText("Linked to your Fincept account: " + masked);
+                    api_key_edit_->setPlaceholderText("Linked to your Quantum Edge account: " + masked);
                 } else {
-                    api_key_edit_->setPlaceholderText("Login to your Fincept account to enable");
+                    api_key_edit_->setPlaceholderText("Login to your Quantum Edge account to enable");
                 }
                 api_key_edit_->setEnabled(false);
                 // Fincept is a managed service — hide model/base_url/fetch
@@ -676,11 +676,11 @@ void LlmConfigSection::populate_form(const QString& provider) {
     api_key_edit_->clear();
     api_key_edit_->setEnabled(!is_fincept);
     if (is_fincept) {
-        auto stored = SettingsRepository::instance().get("fincept_api_key");
+        auto stored = SettingsRepository::instance().get("quantumedge_api_key");
         if (stored.is_ok() && !stored.value().isEmpty())
-            api_key_edit_->setPlaceholderText("Linked to your Fincept account: " + stored.value().left(8) + "...");
+            api_key_edit_->setPlaceholderText("Linked to your Quantum Edge account: " + stored.value().left(8) + "...");
         else
-            api_key_edit_->setPlaceholderText("Login to your Fincept account to enable");
+            api_key_edit_->setPlaceholderText("Login to your Quantum Edge account to enable");
         model_combo_->setVisible(false);
         fetch_btn_->setVisible(false);
         base_url_edit_->setVisible(false);
@@ -706,7 +706,7 @@ void LlmConfigSection::on_provider_selected(int row) {
     }
 
     QString provider = provider_list_->item(row)->data(Qt::UserRole).toString();
-    delete_btn_->setEnabled(provider.toLower() != "fincept");
+    delete_btn_->setEnabled(provider.toLower() != "quantumedge");
     populate_form(provider);
 }
 
@@ -717,7 +717,7 @@ void LlmConfigSection::on_save_provider() {
         return;
     }
 
-    bool is_fincept = (provider == "fincept");
+    bool is_fincept = (provider == "quantumedge");
 
     LlmConfig cfg;
     cfg.provider = provider;
@@ -787,8 +787,8 @@ void LlmConfigSection::on_delete_provider() {
 
     QString provider = provider_list_->item(row)->data(Qt::UserRole).toString();
 
-    if (provider.toLower() == "fincept") {
-        show_status("Cannot remove built-in Fincept provider", true);
+    if (provider.toLower() == "quantumedge") {
+        show_status("Cannot remove built-in Quantum Edge provider", true);
         return;
     }
 
@@ -826,13 +826,13 @@ void LlmConfigSection::on_test_connection() {
         return;
     }
 
-    if (provider == "fincept") {
+    if (provider == "quantumedge") {
         // Fincept is a managed service — verify API key exists
-        auto stored = SettingsRepository::instance().get("fincept_api_key");
+        auto stored = SettingsRepository::instance().get("quantumedge_api_key");
         if (stored.is_ok() && !stored.value().isEmpty())
-            show_status("Fincept connected — API key active", false);
+            show_status("Quantum Edge connected — API key active", false);
         else
-            show_status("Not connected — login to your Fincept account first", true);
+            show_status("Not connected — login to your Quantum Edge account first", true);
         return;
     }
 
@@ -873,8 +873,8 @@ void LlmConfigSection::on_fetch_models() {
         return;
     }
 
-    if (provider == "fincept") {
-        show_status("Fincept manages models automatically", false);
+    if (provider == "quantumedge") {
+        show_status("Quantum Edge manages models automatically", false);
         return;
     }
 

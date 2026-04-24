@@ -1,5 +1,5 @@
 // src/screens/economics/panels/FinceptMacroPanel.h
-// Fincept Macro — proprietary macro data source.
+// Quantum Edge Macro — proprietary macro data source.
 // Script fincept_macro.py does not yet exist — shows a Coming Soon panel.
 // When the script is ready, this panel will be updated.
 #pragma once

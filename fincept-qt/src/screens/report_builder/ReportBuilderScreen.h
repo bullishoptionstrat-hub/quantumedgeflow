@@ -24,7 +24,7 @@ struct ReportComponent {
 struct ReportMetadata {
     QString title = "Untitled Report";
     QString author = "Analyst";
-    QString company = "Fincept Corporation";
+    QString company = "Quantum Edge";
     QString date;
     QString header_left;
     QString header_center;

@@ -153,7 +153,7 @@ void UpdateService::check_for_updates(bool silent) {
     QNetworkRequest req{QUrl(manifest_url_)};
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     req.setHeader(QNetworkRequest::UserAgentHeader,
-                  QString("FinceptTerminal/%1 (%2)").arg(local_version, platform_key));
+                  QString("QuantumEdgeFlow/%1 (%2)").arg(local_version, platform_key));
     QNetworkReply* reply = net_.get(req);
     connect(reply, &QNetworkReply::finished, this, &UpdateService::on_manifest_reply_finished);
 }
@@ -219,7 +219,7 @@ void UpdateService::on_manifest_reply_finished() {
                  QString("Already up to date — local=%1, remote=%2").arg(local_version, remote_version));
         if (!silent_) {
             QMessageBox::information(
-                dialog_parent(), QStringLiteral("Fincept Terminal"),
+                dialog_parent(), QStringLiteral("Quantum Edge Flow"),
                 QStringLiteral("You're running the latest version (%1).").arg(local_version));
         }
         finish_check(false);
@@ -232,7 +232,7 @@ void UpdateService::on_manifest_reply_finished() {
 
     // Prompt the user. Include changelog if present. Always offer a "view release
     // notes" escape hatch via open-url so users can read more before installing.
-    QString prompt = QStringLiteral("A new version of Fincept Terminal is available.\n\n"
+    QString prompt = QStringLiteral("A new version of Quantum Edge Flow is available.\n\n"
                                     "Current version: %1\nLatest version:  %2\n\n")
                          .arg(local_version, remote_version);
     if (!changelog.isEmpty()) {
@@ -278,7 +278,7 @@ void UpdateService::start_download(const QString& url, const QString& expected_s
     const QString file_name = QFileInfo(QUrl(url).path()).fileName();
     const QString dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
     pending_local_path_ = QDir(dir).filePath(file_name.isEmpty()
-                                                 ? QStringLiteral("FinceptTerminal-update.tmp")
+                                                 ? QStringLiteral("QuantumEdgeFlow-update.tmp")
                                                  : file_name);
 
     // Drop any leftover from a previous run — otherwise a partial file could
@@ -292,7 +292,7 @@ void UpdateService::start_download(const QString& url, const QString& expected_s
     QNetworkRequest req{QUrl(url)};
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     req.setHeader(QNetworkRequest::UserAgentHeader,
-                  QString("FinceptTerminal/%1").arg(QApplication::applicationVersion()));
+                  QString("QuantumEdgeFlow/%1").arg(QApplication::applicationVersion()));
     QNetworkReply* reply = net_.get(req);
     connect(reply, &QNetworkReply::finished, this, &UpdateService::on_download_reply_finished);
     connect(reply, &QNetworkReply::downloadProgress, this, &UpdateService::on_download_progress);
@@ -426,7 +426,7 @@ void UpdateService::finish_check(bool update_found) {
 }
 
 void UpdateService::show_error(const QString& text) {
-    QMessageBox::warning(dialog_parent(), QStringLiteral("Fincept Terminal"), text);
+    QMessageBox::warning(dialog_parent(), QStringLiteral("Quantum Edge Flow"), text);
 }
 
 } // namespace fincept::services

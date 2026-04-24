@@ -100,7 +100,7 @@ void NewsService::fetch_all_news(bool force, ArticlesCallback cb) {
 
     for (const auto& feed : feeds) {
         QNetworkRequest req(QUrl(feed.url));
-        req.setHeader(QNetworkRequest::UserAgentHeader, "FinceptTerminal/4.0");
+        req.setHeader(QNetworkRequest::UserAgentHeader, "QuantumEdgeFlow/4.0");
         req.setRawHeader("Accept", "application/rss+xml, application/xml, text/xml, */*");
         req.setTransferTimeout(kFeedTransferTimeoutMs);
 
@@ -230,7 +230,7 @@ void NewsService::fetch_all_news_progressive(bool force, ArticlesCallback final_
 
     for (const auto& feed : feeds) {
         QNetworkRequest req(QUrl(feed.url));
-        req.setHeader(QNetworkRequest::UserAgentHeader, "FinceptTerminal/4.0");
+        req.setHeader(QNetworkRequest::UserAgentHeader, "QuantumEdgeFlow/4.0");
         req.setRawHeader("Accept", "application/rss+xml, application/xml, text/xml, */*");
         req.setTransferTimeout(kFeedTransferTimeoutMs);
 
@@ -312,7 +312,7 @@ void NewsService::fetch_all_news_progressive(bool force, ArticlesCallback final_
     }
 }
 
-// ── AI Analysis via Fincept API ─────────────────────────────────────────────
+// ── AI Analysis via Quantum Edge API ─────────────────────────────────────────────
 
 void NewsService::analyze_article(const QString& url, AnalysisCallback cb) {
     QJsonObject body;

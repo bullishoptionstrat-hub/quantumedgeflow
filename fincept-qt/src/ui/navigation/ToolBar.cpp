@@ -76,7 +76,7 @@ ToolBar::ToolBar(QWidget* parent) : QWidget(parent) {
     };
 
     sep();
-    fincept_label_ = mk("FINCEPT ");
+    fincept_label_ = mk("QUANTUM EDGE ");
     hl->addWidget(fincept_label_);
     branding_label_ = mk("TERMINAL");
     hl->addWidget(branding_label_);
@@ -473,7 +473,7 @@ QMenu* ToolBar::build_view_menu() {
 QMenu* ToolBar::build_help_menu() {
     auto* m = new QMenu("Help", this);
     m->setStyleSheet(popup_ss());
-    m->addAction("About Fincept", this, [this]() { emit navigate_to("about"); });
+    m->addAction("About Quantum Edge", this, [this]() { emit navigate_to("about"); });
     m->addAction("Help Center", this, [this]() { emit navigate_to("help"); });
     m->addSeparator();
     m->addAction("Contact Us", this, [this]() { emit navigate_to("contact"); });

@@ -672,12 +672,12 @@ MainWindow::MainWindow(int window_id, QWidget* parent) : QMainWindow(parent), wi
             dlg->deleteLater();
         } else if (action == "import_data") {
             QString path =
-                QFileDialog::getOpenFileName(this, "Import Workspace", QDir::homePath(), "Fincept Workspace (*.fwsp)");
+                QFileDialog::getOpenFileName(this, "Import Workspace", QDir::homePath(), "Quantum Edge Workspace (*.fwsp)");
             if (!path.isEmpty())
                 WorkspaceManager::instance().import_workspace(path);
         } else if (action == "export_data") {
             QString path =
-                QFileDialog::getSaveFileName(this, "Export Workspace", QDir::homePath(), "Fincept Workspace (*.fwsp)");
+                QFileDialog::getSaveFileName(this, "Export Workspace", QDir::homePath(), "Quantum Edge Workspace (*.fwsp)");
             if (!path.isEmpty())
                 WorkspaceManager::instance().export_workspace(path);
         } else if (action == "screenshot") {
@@ -1344,8 +1344,8 @@ void MainWindow::set_shell_visible(bool visible) {
     if (!visible) {
         // Reset title to plain app name — no screen suffix while on auth screens
         const QString profile = ProfileManager::instance().active();
-        setWindowTitle(profile == "default" ? "Fincept Terminal"
-                                            : QString("Fincept Terminal [%1]").arg(profile));
+        setWindowTitle(profile == "default" ? "Quantum Edge Flow"
+                                            : QString("Quantum Edge Flow [%1]").arg(profile));
     }
 }
 

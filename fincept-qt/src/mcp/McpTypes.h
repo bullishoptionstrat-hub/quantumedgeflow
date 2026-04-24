@@ -150,6 +150,6 @@ struct UnifiedTool {
 // ============================================================================
 
 inline constexpr const char* INTERNAL_SERVER_ID = "fincept-terminal";
-inline constexpr const char* INTERNAL_SERVER_NAME = "Fincept Terminal";
+inline constexpr const char* INTERNAL_SERVER_NAME = "Quantum Edge Flow";
 
 } // namespace fincept::mcp

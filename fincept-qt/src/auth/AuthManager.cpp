@@ -109,14 +109,14 @@ void AuthManager::clear_session() {
     session_ = SessionData{};
     clear_tokens();
     fincept::SettingsRepository::instance().remove("fincept_session");
-    fincept::SettingsRepository::instance().remove("fincept_api_key");
+    fincept::SettingsRepository::instance().remove("quantumedge_api_key");
     fincept::SecureStorage::instance().remove("api_key");
 
     // Clear PIN and lockout state on logout — user must set up again after re-login
     PinManager::instance().clear_pin();
 
     // Clear auto-configured fincept LLM provider and reset LlmService
-    LlmConfigRepository::instance().delete_provider("fincept");
+    LlmConfigRepository::instance().delete_provider("quantumedge");
 }
 
 bool AuthManager::needs_pin_setup() const {
@@ -490,14 +490,14 @@ void AuthManager::refresh_user_data() {
     fetch_user_profile([this] { emit subscription_fetched(); });
 }
 
-// ── Auto-configure Fincept LLM provider ──────────────────────────────────────
+// ── Auto-configure Quantum Edge AI provider ──────────────────────────────────────
 
 void AuthManager::auto_configure_fincept_llm() {
     if (session_.api_key.isEmpty())
         return;
 
     // Always store API key in settings — LlmService resolves it at runtime
-    fincept::SettingsRepository::instance().set("fincept_api_key", session_.api_key, "auth");
+    fincept::SettingsRepository::instance().set("quantumedge_api_key", session_.api_key, "auth");
 
     // Only create the fincept provider row if it doesn't already exist.
     // This prevents overwriting the user's model/settings choice on every
@@ -506,7 +506,7 @@ void AuthManager::auto_configure_fincept_llm() {
     bool fincept_exists = false;
     if (providers.is_ok()) {
         for (const auto& p : providers.value()) {
-            if (p.provider.toLower() == "fincept") {
+            if (p.provider.toLower() == "quantumedge") {
                 fincept_exists = true;
                 break;
             }
@@ -515,7 +515,7 @@ void AuthManager::auto_configure_fincept_llm() {
 
     if (!fincept_exists) {
         LlmConfig fincept_llm;
-        fincept_llm.provider = "fincept";
+        fincept_llm.provider = "quantumedge";
         fincept_llm.model = "MiniMax-M2.7";
         fincept_llm.base_url = {};
         LlmConfigRepository::instance().save_provider(fincept_llm);
@@ -526,7 +526,7 @@ void AuthManager::auto_configure_fincept_llm() {
     auto active = LlmConfigRepository::instance().get_active_provider();
     bool has_active = active.is_ok() && !active.value().provider.isEmpty();
     if (!has_active)
-        LlmConfigRepository::instance().set_active("fincept");
+        LlmConfigRepository::instance().set_active("quantumedge");
 }
 
 } // namespace fincept::auth

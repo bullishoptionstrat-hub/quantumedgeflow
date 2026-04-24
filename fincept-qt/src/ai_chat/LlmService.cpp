@@ -184,15 +184,15 @@ void LlmService::ensure_config() const {
 
     // Fallback: if no provider configured, use Fincept with session API key
     if (provider_.isEmpty()) {
-        provider_ = "fincept";
+        provider_ = "quantumedge";
         model_ = "MiniMax-M2.7";
         base_url_ = {};
-        LOG_INFO(TAG, "No LLM provider configured — using Fincept default");
+        LOG_INFO(TAG, "No LLM provider configured — using Quantum Edge default");
     }
 
     // Fincept always resolves API key from session (never stored in llm_configs)
-    if (provider_ == "fincept") {
-        auto stored_key = SettingsRepository::instance().get("fincept_api_key");
+    if (provider_ == "quantumedge") {
+        auto stored_key = SettingsRepository::instance().get("quantumedge_api_key");
         if (stored_key.is_ok() && !stored_key.value().isEmpty())
             api_key_ = stored_key.value();
     }
@@ -205,12 +205,12 @@ void LlmService::ensure_config() const {
     }
 
     // Inject default system prompt when user hasn't configured one.
-    // This tells the model it is running inside the Fincept Terminal and
+    // This tells the model it is running inside the Quantum Edge Flow and
     // should use the provided tools (navigation, market data, portfolio, etc.)
     // rather than declining requests it can actually fulfil via a tool call.
     if (system_prompt_.trimmed().isEmpty()) {
-        system_prompt_ = "You are Fincept AI, the intelligent assistant embedded inside the "
-                         "Fincept Terminal — a professional desktop financial intelligence application. "
+        system_prompt_ = "You are Quantum Edge AI, the intelligent assistant embedded inside the "
+                         "Quantum Edge Flow — a professional desktop financial intelligence application. "
                          "You have access to a set of tools that let you interact with the terminal "
                          "directly: navigate to any screen, fetch live market data, manage watchlists, "
                          "query portfolios, execute trades on paper, run Python analytics, and more. "
@@ -311,7 +311,7 @@ QString LlmService::get_endpoint_url() const {
 
     // Fincept: two endpoints — sync chat and async LLM
     // base_url_ stores the base domain; append path here.
-    if (p == "fincept") {
+    if (p == "quantumedge") {
         // sync endpoint for chat (short replies)
         return "https://api.quantumedge.business/research/chat";
     }
@@ -361,7 +361,7 @@ QMap<QString, QString> LlmService::get_headers() const {
     } else if (p == "gemini" || p == "google") {
         if (!api_key_.isEmpty())
             h["x-goog-api-key"] = api_key_;
-    } else if (p == "fincept") {
+    } else if (p == "quantumedge") {
         // api_key_ already resolved from session by ensure_config()
         if (!api_key_.isEmpty())
             h["X-API-Key"] = api_key_;
@@ -369,7 +369,7 @@ QMap<QString, QString> LlmService::get_headers() const {
         if (tok.is_ok() && !tok.value().isEmpty())
             h["X-Session-Token"] = tok.value();
         // Cloudflare requires a User-Agent header
-        h["User-Agent"] = "FinceptTerminal/4.0";
+        h["User-Agent"] = "QuantumEdgeFlow/4.0";
     } else {
         // OpenAI-compatible
         if (!api_key_.isEmpty())
@@ -377,7 +377,7 @@ QMap<QString, QString> LlmService::get_headers() const {
         if (p == "openrouter") {
             // Optional attribution — appears on openrouter.ai/rankings leaderboard
             h["HTTP-Referer"] = "https://quantumedge.business";
-            h["X-Title"] = "Fincept Terminal";
+            h["X-Title"] = "Quantum Edge Flow";
         }
     }
     return h;
@@ -528,7 +528,7 @@ QJsonObject LlmService::build_fincept_request(const QString& user_message,
     QJsonObject req;
     req["messages"] = messages;
     // Pass model if set to a real model name (not the legacy placeholder)
-    if (!model_.isEmpty() && model_ != "fincept-llm")
+    if (!model_.isEmpty() && model_ != "quantumedge-llm")
         req["model"] = model_;
 
     Q_UNUSED(with_tools) // Fincept /research/chat does not support tools yet
@@ -701,7 +701,7 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
     const QString async_url = "https://api.quantumedge.business/research/llm/async";
     const QString status_base = "https://api.quantumedge.business/research/llm/status/";
 
-    LOG_INFO(TAG, QString("Fincept async: submitting to %1 (api_key=%2, prompt_len=%3)")
+    LOG_INFO(TAG, QString("Quantum Edge async: submitting to %1 (api_key=%2, prompt_len=%3)")
                       .arg(async_url)
                       .arg(api_key_.isEmpty() ? "EMPTY" : api_key_.left(12) + "...")
                       .arg(prompt.length()));
@@ -709,14 +709,14 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
     QByteArray json_data = QJsonDocument(submit_body).toJson(QJsonDocument::Compact);
     auto submit = eventloop_request("POST", async_url, json_data, hdr, 30000);
     if (!submit.success) {
-        resp.error = "Fincept async submit failed: " + submit.error;
+        resp.error = "Quantum Edge async submit failed: " + submit.error;
         LOG_ERROR(TAG, resp.error);
         return resp;
     }
 
     auto submit_doc = QJsonDocument::fromJson(submit.body);
     if (submit_doc.isNull()) {
-        resp.error = "Fincept async: failed to parse submit response";
+        resp.error = "Quantum Edge async: failed to parse submit response";
         return resp;
     }
 
@@ -726,10 +726,10 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
     if (task_id.isEmpty())
         task_id = sj["data"].toObject()["task_id"].toString();
     if (task_id.isEmpty()) {
-        resp.error = "Fincept async: no task_id in submit response";
+        resp.error = "Quantum Edge async: no task_id in submit response";
         return resp;
     }
-    LOG_INFO(TAG, "Fincept async task_id: " + task_id);
+    LOG_INFO(TAG, "Quantum Edge async task_id: " + task_id);
 
     // Poll every 3 seconds, up to 120 seconds total
     const QString poll_url = status_base + task_id;
@@ -739,7 +739,7 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
 
         auto poll = eventloop_request("GET", poll_url, {}, hdr, 15000);
         if (!poll.success) {
-            LOG_WARN(TAG, "Fincept async poll failed: " + poll.error);
+            LOG_WARN(TAG, "Quantum Edge async poll failed: " + poll.error);
             continue;
         }
 
@@ -753,7 +753,7 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
         if (status.isEmpty())
             status = data_obj["status"].toString();
 
-        LOG_INFO(TAG, QString("Fincept async poll %1 status=%2").arg(i + 1).arg(status));
+        LOG_INFO(TAG, QString("Quantum Edge async poll %1 status=%2").arg(i + 1).arg(status));
 
         if (status == "completed") {
             // data.data.response
@@ -761,8 +761,8 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
             if (response.isEmpty())
                 response = data_obj["response"].toString();
             if (response.isEmpty()) {
-                resp.error = "Fincept async completed but response is empty";
-                LOG_WARN(TAG, "Fincept async task completed with empty response field");
+                resp.error = "Quantum Edge async completed but response is empty";
+                LOG_WARN(TAG, "Quantum Edge async task completed with empty response field");
                 return resp;
             }
             resp.content = response;
@@ -778,14 +778,14 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
             // Check for text-based tool calls in the response.
             // The model may have emitted <tool_call>...</tool_call> blocks.
             if (!resp.content.isEmpty()) {
-                LOG_INFO(TAG, "Fincept: checking response for text-based tool calls");
+                LOG_INFO(TAG, "Quantum Edge: checking response for text-based tool calls");
                 // Use the sync /research/chat endpoint for follow-up after tool execution
                 QString followup_url = get_endpoint_url();
                 auto followup_hdr = get_headers();
                 auto tool_result =
                     try_extract_and_execute_text_tool_calls(resp.content, user_message, followup_url, followup_hdr);
                 if (tool_result.has_value()) {
-                    LOG_INFO(TAG, "Fincept: text tool calls detected and executed");
+                    LOG_INFO(TAG, "Quantum Edge: text tool calls detected and executed");
                     return tool_result.value();
                 }
             }
@@ -796,12 +796,12 @@ LlmResponse LlmService::fincept_async_request(const QString& user_message,
             QString err = pj["error"].toString();
             if (err.isEmpty())
                 err = data_obj["error"].toString();
-            resp.error = "Fincept async task failed: " + (err.isEmpty() ? "unknown error" : err);
+            resp.error = "Quantum Edge async task failed: " + (err.isEmpty() ? "unknown error" : err);
             return resp;
         }
     }
 
-    resp.error = "Fincept async timed out waiting for response";
+    resp.error = "Quantum Edge async timed out waiting for response";
     return resp;
 }
 
@@ -827,7 +827,7 @@ LlmResponse LlmService::do_request(const QString& user_message, const std::vecto
         req_body = build_gemini_request(user_message, history);
         // Auth goes via x-goog-api-key header (set by get_headers()).
         // Do not append ?key= to URL — it leaks the key into access logs.
-    } else if (provider_ == "fincept") {
+    } else if (provider_ == "quantumedge") {
         // Fincept uses two separate endpoints:
         // Primary response → async (submit + poll, returns richer model output)
         // Follow-ups (tool results) → sync /research/chat
@@ -1031,7 +1031,7 @@ LlmResponse LlmService::do_request(const QString& user_message, const std::vecto
             }
         }
 
-    } else if (provider_ == "fincept") {
+    } else if (provider_ == "quantumedge") {
         // /research/chat returns OpenAI-compatible choices array:
         // {"success":true,"data":{"choices":[{"message":{"role":"assistant","content":"..."}}],...}}
         QJsonObject data = rj.contains("data") ? rj["data"].toObject() : rj;
@@ -1040,8 +1040,8 @@ LlmResponse LlmService::do_request(const QString& user_message, const std::vecto
             resp.content = extract_openai_message_text(choices[0].toObject()["message"].toObject());
         // API returned success=true but empty response text — treat as soft error
         if (resp.content.isEmpty()) {
-            resp.error = "Fincept LLM returned an empty response. Please try again.";
-            LOG_WARN(TAG, "Fincept /research/chat returned empty choices or content");
+            resp.error = "Quantum Edge AI returned an empty response. Please try again.";
+            LOG_WARN(TAG, "Quantum Edge /research/chat returned empty choices or content");
             return resp;
         }
 
@@ -1417,14 +1417,14 @@ std::optional<LlmResponse> LlmService::try_extract_and_execute_text_tool_calls(c
         // Temperature intentionally omitted — Anthropic default.
         if (!system_prompt_.isEmpty())
             follow_body["system"] = system_prompt_;
-    } else if (provider_ == "fincept") {
+    } else if (provider_ == "quantumedge") {
         // /research/chat uses messages array
         QJsonArray msgs;
         if (!system_prompt_.isEmpty())
             msgs.append(QJsonObject{{"role", "system"}, {"content", system_prompt_}});
         msgs.append(QJsonObject{{"role", "user"}, {"content", follow_prompt}});
         follow_body["messages"] = msgs;
-        if (!model_.isEmpty() && model_ != "fincept-llm")
+        if (!model_.isEmpty() && model_ != "quantumedge-llm")
             follow_body["model"] = model_;
     } else {
         // OpenAI-compatible
@@ -1459,7 +1459,7 @@ std::optional<LlmResponse> LlmService::try_extract_and_execute_text_tool_calls(c
     // Extract text from follow-up response (provider-aware)
     if (provider_ == "anthropic") {
         resp.content = extract_anthropic_content_text(fu_rj["content"].toArray());
-    } else if (provider_ == "fincept") {
+    } else if (provider_ == "quantumedge") {
         // /research/chat: {"success":true,"data":{"choices":[{"message":{"content":"..."}}]}}
         QJsonObject data = fu_rj.contains("data") ? fu_rj["data"].toObject() : fu_rj;
         QJsonArray fu_choices = data["choices"].toArray();
@@ -1777,7 +1777,7 @@ QString LlmService::get_models_url(const QString& provider, const QString& api_k
     const QString p = provider.toLower();
 
     // Custom base_url (except fincept)
-    if (!base_url.isEmpty() && p != "fincept") {
+    if (!base_url.isEmpty() && p != "quantumedge") {
         QString base = base_url;
         if (base.endsWith('/'))
             base.chop(1);
@@ -1810,7 +1810,7 @@ QString LlmService::get_models_url(const QString& provider, const QString& api_k
         return "https://api.x.ai/v1/models";
     if (p == "kimi")
         return "https://api.moonshot.ai/v1/models";
-    if (p == "fincept")
+    if (p == "quantumedge")
         return "https://api.quantumedge.business/research/llm/models";
     // minimax: no public /v1/models endpoint — fallback models used instead
     return {};
@@ -1830,11 +1830,11 @@ QMap<QString, QString> LlmService::get_models_headers(const QString& provider, c
             h["x-goog-api-key"] = api_key;
     } else if (p == "ollama") {
         // No auth needed
-    } else if (p == "fincept") {
+    } else if (p == "quantumedge") {
         // Resolve API key from session (same logic as ensure_config)
         QString resolved_key = api_key;
         if (resolved_key.isEmpty()) {
-            auto stored = SettingsRepository::instance().get("fincept_api_key");
+            auto stored = SettingsRepository::instance().get("quantumedge_api_key");
             if (stored.is_ok() && !stored.value().isEmpty())
                 resolved_key = stored.value();
         }
@@ -1888,7 +1888,7 @@ QStringList LlmService::parse_models_response(const QString& provider, const QBy
             if (!name.isEmpty())
                 models.append(name);
         }
-    } else if (p == "fincept") {
+    } else if (p == "quantumedge") {
         // {"success":true,"data":{"models":["MiniMax-M2.7",...]}}
         // or {"success":true,"data":["model1","model2",...]}
         QJsonValue data_val = root["data"];
@@ -1922,7 +1922,7 @@ QStringList LlmService::parse_models_response(const QString& provider, const QBy
 
 void LlmService::fetch_models(const QString& provider, const QString& api_key, const QString& base_url) {
     // Fincept has no public /models listing endpoint — return known models immediately.
-    if (provider.toLower() == "fincept") {
+    if (provider.toLower() == "quantumedge") {
         emit models_fetched(provider,
                             {"MiniMax-M2.7", "MiniMax-M2.7-highspeed", "MiniMax-M2.5", "MiniMax-M2.5-highspeed"}, {});
         return;

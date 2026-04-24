@@ -1,5 +1,5 @@
 // src/screens/economics/panels/FinceptMacroPanel.cpp
-// Fincept Macro — proprietary macro data source.
+// Quantum Edge Macro — proprietary macro data source.
 // The script fincept_macro.py does not yet exist.
 // This panel shows a Coming Soon state with description of planned data.
 // When fincept_macro.py is ready, implement on_fetch() and on_result() here.
@@ -14,7 +14,7 @@
 namespace fincept::screens {
 namespace {
 
-static constexpr const char* kFinceptMacroSourceId = "fincept";
+static constexpr const char* kFinceptMacroSourceId = "quantumedge";
 static constexpr const char* kFinceptMacroColor = "#d97706"; // amber
 } // namespace
 
@@ -25,14 +25,14 @@ FinceptMacroPanel::FinceptMacroPanel(QWidget* parent)
 }
 
 void FinceptMacroPanel::activate() {
-    show_empty("Fincept Macro — Coming Soon\n\n"
+    show_empty("Quantum Edge Macro — Coming Soon\n\n"
                "Planned data:\n"
                "  · Central bank rates (40+ countries)\n"
                "  · Sovereign debt metrics\n"
-               "  · Fincept proprietary macro indices\n"
+               "  · Quantum Edge proprietary macro indices\n"
                "  · Global inflation dashboard\n"
                "  · Emerging market indicators\n\n"
-               "Requires Fincept subscription + API key\n"
+               "Requires Quantum Edge subscription + API key\n"
                "Check back in a future release");
 }
 
@@ -43,7 +43,7 @@ void FinceptMacroPanel::build_controls(QHBoxLayout* thl) {
 }
 
 void FinceptMacroPanel::on_fetch() {
-    show_empty("Fincept Macro data script is not yet available.\n"
+    show_empty("Quantum Edge Macro data script is not yet available.\n"
                "This panel will be enabled in a future release.");
 }
 

@@ -199,7 +199,7 @@ void register_agent_nodes(NodeRegistry& registry) {
 
     // ── Tool Picker ────────────────────────────────────────────────
     // Takes a natural-language query (or upstream JSON context), asks the
-    // configured LLM which Fincept MCP tool best handles the request, and
+    // configured LLM which Quantum Edge MCP tool best handles the request, and
     // outputs { "tool": "<name>", "args": {...} } ready for the MCP Tool node.
     registry.register_type({
         .type_id = "agent.tool_picker",
@@ -235,7 +235,7 @@ void register_agent_nodes(NodeRegistry& registry) {
                     tool_list += QString("- %1: %2\n").arg(t.name, t.description);
                 }
 
-                QString system_prompt = "You are a tool-selection assistant for the Fincept Terminal.\n"
+                QString system_prompt = "You are a tool-selection assistant for the Quantum Edge Flow.\n"
                                         "Given a user request, choose the single best tool from the list below "
                                         "and return ONLY a JSON object with this exact shape:\n"
                                         "{\"tool\": \"<tool_name>\", \"args\": {<required args as key/value>}}\n"

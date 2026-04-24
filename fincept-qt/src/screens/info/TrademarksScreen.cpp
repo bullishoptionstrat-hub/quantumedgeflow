@@ -84,10 +84,10 @@ TrademarksScreen::TrademarksScreen(QWidget* parent) : QWidget(parent) {
     pvl->setSpacing(6);
 
     pvl->addWidget(heading("1", "FINCEPT TRADEMARKS"));
-    pvl->addWidget(bullet("Fincept (TM)"));
-    pvl->addWidget(bullet("Fincept Terminal (TM)"));
-    pvl->addWidget(bullet("Fincept Corporation (TM)"));
-    pvl->addWidget(bullet("Fincept Logo and associated visual identities"));
+    pvl->addWidget(bullet("Quantum Edge (TM)"));
+    pvl->addWidget(bullet("Quantum Edge Flow (TM)"));
+    pvl->addWidget(bullet("Quantum Edge (TM)"));
+    pvl->addWidget(bullet("Quantum Edge Logo and associated visual identities"));
 
     pvl->addWidget(heading("2", "THIRD-PARTY TRADEMARKS"));
     pvl->addWidget(body("The following are trademarks of their respective owners:"));
@@ -99,19 +99,19 @@ TrademarksScreen::TrademarksScreen(QWidget* parent) : QWidget(parent) {
 
     pvl->addWidget(heading("3", "TRADEMARK GUIDELINES"));
     pvl->addWidget(body("Permitted Uses:"));
-    pvl->addWidget(bullet("Referring to Fincept products in editorial or descriptive contexts"));
-    pvl->addWidget(bullet("Linking to official Fincept resources"));
+    pvl->addWidget(bullet("Referring to Quantum Edge products in editorial or descriptive contexts"));
+    pvl->addWidget(bullet("Linking to official Quantum Edge resources"));
     pvl->addWidget(bullet("Academic or research references"));
 
     pvl->addSpacing(4);
     pvl->addWidget(body("Prohibited Uses:"));
-    pvl->addWidget(bullet("Using Fincept marks to imply endorsement or affiliation"));
-    pvl->addWidget(bullet("Modifying or altering any Fincept trademark"));
-    pvl->addWidget(bullet("Using Fincept marks in domain names or product names"));
+    pvl->addWidget(bullet("Using Quantum Edge marks to imply endorsement or affiliation"));
+    pvl->addWidget(bullet("Modifying or altering any Quantum Edge trademark"));
+    pvl->addWidget(bullet("Using Quantum Edge marks in domain names or product names"));
     pvl->addWidget(bullet("Creating confusingly similar marks"));
 
     pvl->addWidget(heading("4", "COPYRIGHT NOTICE"));
-    pvl->addWidget(body("Copyright 2024-2026 Fincept Corporation. All rights reserved."));
+    pvl->addWidget(body("Copyright 2024-2026 Quantum Edge. All rights reserved."));
     pvl->addWidget(body("This software is licensed under AGPL-3.0-or-later for open source use, "
                         "with a separate commercial license available for enterprise deployment."));
 
@@ -123,11 +123,11 @@ TrademarksScreen::TrademarksScreen(QWidget* parent) : QWidget(parent) {
     pvl->addWidget(bullet("Crypto data from exchange APIs (Kraken, HyperLiquid, etc.)"));
 
     pvl->addWidget(heading("6", "REPORTING INFRINGEMENT"));
-    pvl->addWidget(body("To report trademark infringement, contact: support@fincept.in"));
+    pvl->addWidget(body("To report trademark infringement, contact: support@quantumedge.business"));
 
     pvl->addWidget(heading("7", "LEGAL DEPARTMENT"));
-    pvl->addWidget(body("Fincept Corporation — Legal Department"));
-    pvl->addWidget(body("Email: support@fincept.in"));
+    pvl->addWidget(body("Quantum Edge — Legal Department"));
+    pvl->addWidget(body("Email: support@quantumedge.business"));
 
     vl->addWidget(panel);
     vl->addStretch();

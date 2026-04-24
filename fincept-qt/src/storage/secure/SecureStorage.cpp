@@ -79,7 +79,7 @@ static QByteArray xor_obfuscate(const QByteArray& data) {
 Result<void> SecureStorage::store(const QString& key, const QString& value) {
 #ifdef Q_OS_WIN
     // Windows Credential Manager — DPAPI-encrypted, user-scoped
-    std::wstring target = L"FinceptTerminal/" + key.toStdWString();
+    std::wstring target = L"QuantumEdgeFlow/" + key.toStdWString();
     QByteArray data = value.toUtf8();
 
     CREDENTIALW cred = {};
@@ -132,7 +132,7 @@ Result<void> SecureStorage::store(const QString& key, const QString& value) {
     // Linux — XOR-obfuscated QSettings.
     // WARNING: Not cryptographically secure. Prevents casual inspection only.
     // TODO: Add libsecret backend for proper encryption on Linux.
-    QSettings s("Fincept", "FinceptTerminal-Secure");
+    QSettings s("QuantumEdge", "QuantumEdgeFlow-Secure");
     const QByteArray obfuscated = xor_obfuscate(value.toUtf8()).toBase64();
     s.setValue("secure/" + key, QString::fromLatin1(obfuscated));
     return Result<void>::ok();
@@ -143,7 +143,7 @@ Result<void> SecureStorage::store(const QString& key, const QString& value) {
 
 Result<QString> SecureStorage::retrieve(const QString& key) {
 #ifdef Q_OS_WIN
-    std::wstring target = L"FinceptTerminal/" + key.toStdWString();
+    std::wstring target = L"QuantumEdgeFlow/" + key.toStdWString();
     PCREDENTIALW cred = nullptr;
 
     if (!CredReadW(target.c_str(), CRED_TYPE_GENERIC, 0, &cred)) {
@@ -181,7 +181,7 @@ Result<QString> SecureStorage::retrieve(const QString& key) {
     return Result<QString>::ok(value);
 
 #else
-    QSettings s("Fincept", "FinceptTerminal-Secure");
+    QSettings s("QuantumEdge", "QuantumEdgeFlow-Secure");
     QVariant v = s.value("secure/" + key);
     if (!v.isValid())
         return Result<QString>::err("Not found");
@@ -198,7 +198,7 @@ Result<QString> SecureStorage::retrieve(const QString& key) {
 
 Result<void> SecureStorage::remove(const QString& key) {
 #ifdef Q_OS_WIN
-    std::wstring target = L"FinceptTerminal/" + key.toStdWString();
+    std::wstring target = L"QuantumEdgeFlow/" + key.toStdWString();
     if (!CredDeleteW(target.c_str(), CRED_TYPE_GENERIC, 0)) {
         return Result<void>::err("Failed to delete credential");
     }
@@ -223,7 +223,7 @@ Result<void> SecureStorage::remove(const QString& key) {
     return Result<void>::ok();
 
 #else
-    QSettings s("Fincept", "FinceptTerminal-Secure");
+    QSettings s("QuantumEdge", "QuantumEdgeFlow-Secure");
     s.remove("secure/" + key);
     return Result<void>::ok();
 #endif

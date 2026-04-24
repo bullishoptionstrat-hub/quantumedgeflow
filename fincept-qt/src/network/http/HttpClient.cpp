@@ -20,7 +20,7 @@ QNetworkRequest HttpClient::build_request(const QString& url) const {
     QUrl qurl(full_url);
     QNetworkRequest req{qurl};
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    req.setHeader(QNetworkRequest::UserAgentHeader, "FinceptTerminal/4.0");
+    req.setHeader(QNetworkRequest::UserAgentHeader, "QuantumEdgeFlow/4.0");
     if (!api_key_.isEmpty()) {
         req.setRawHeader("X-API-Key", api_key_.toUtf8());
     }

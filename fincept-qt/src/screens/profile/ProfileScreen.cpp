@@ -475,10 +475,10 @@ QWidget* ProfileScreen::build_support() {
         wl->addWidget(em);
         cg->addWidget(w, r, c2);
     };
-    add_c("GENERAL SUPPORT", "support@fincept.in", 0, 0);
-    add_c("COMMERCIAL", "support@fincept.in", 0, 1);
-    add_c("SECURITY", "support@fincept.in", 1, 0);
-    add_c("LEGAL", "support@fincept.in", 1, 1);
+    add_c("GENERAL SUPPORT", "support@quantumedge.business", 0, 0);
+    add_c("COMMERCIAL", "support@quantumedge.business", 0, 1);
+    add_c("SECURITY", "support@quantumedge.business", 1, 0);
+    add_c("LEGAL", "support@quantumedge.business", 1, 1);
     cvl2->addLayout(cg);
     vl->addWidget(cp);
     auto* lp = make_panel("RESOURCES");
@@ -500,10 +500,10 @@ QWidget* ProfileScreen::build_support() {
         connect(b, &QPushButton::clicked, this, [url]() { QDesktopServices::openUrl(QUrl(url)); });
         lrl->addWidget(b);
     };
-    make_link_btn("DOCS", "https://github.com/Fincept-Corporation/FinceptTerminal/tree/main/docs");
-    make_link_btn("GITHUB", "https://github.com/Fincept-Corporation/FinceptTerminal");
+    make_link_btn("DOCS", "https://github.com/bullishoptionstrat-hub/quantumedgeflow/tree/main/docs");
+    make_link_btn("GITHUB", "https://github.com/bullishoptionstrat-hub/quantumedgeflow");
     make_link_btn("DISCORD", "https://discord.gg/ae87a8ygbN");
-    make_link_btn("FAQ", "https://github.com/Fincept-Corporation/FinceptTerminal/wiki");
+    make_link_btn("FAQ", "https://github.com/bullishoptionstrat-hub/quantumedgeflow/wiki");
     lrl->addStretch();
     lvl->addWidget(lr);
     vl->addWidget(lp);
@@ -778,7 +778,7 @@ void ProfileScreen::show_delete_account_dialog() {
     // First confirmation
     auto first = QMessageBox::warning(
         this, "Delete Account",
-        QString("This will permanently delete your Fincept account (%1) and all associated data.\n\n"
+        QString("This will permanently delete your Quantum Edge account (%1) and all associated data.\n\n"
                 "This action CANNOT be undone. Are you sure?").arg(email),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
     if (first != QMessageBox::Yes)
@@ -839,7 +839,7 @@ void ProfileScreen::show_delete_account_dialog() {
             } else {
                 LOG_ERROR("Profile", "Account deletion failed: " + r.error);
                 QMessageBox::critical(self, "Delete Failed",
-                                      "Account deletion failed: " + r.error + "\n\nPlease contact support@fincept.in");
+                                      "Account deletion failed: " + r.error + "\n\nPlease contact support@quantumedge.business");
             }
         });
     });

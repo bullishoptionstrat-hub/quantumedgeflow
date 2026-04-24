@@ -242,7 +242,7 @@ QWidget* AiChatBubble::build_panel_header() {
     icon->setStyleSheet(QString("color:%1;font-size:20px;background:transparent;").arg(col::TEXT_PRIMARY()));
     hl->addWidget(icon);
 
-    auto* title = new QLabel("Fincept AI");
+    auto* title = new QLabel("Quantum Edge AI");
     title->setStyleSheet(
         QString("color:%1;font-size:13px;font-weight:700;background:transparent;").arg(col::TEXT_PRIMARY()));
     hl->addWidget(title, 1);
@@ -451,7 +451,7 @@ void AiChatBubble::on_send() {
     // confusing delayed "No provider" message after the network round-trip.
     if (!ai_chat::LlmService::instance().is_configured()) {
         add_bubble("assistant", "AI chat is not configured. Please go to **Settings → LLM Config** "
-                                "and add an API key or select the Fincept provider.");
+                                "and add an API key or select the Quantum Edge provider.");
         return;
     }
 

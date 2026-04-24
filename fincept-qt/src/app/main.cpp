@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
 
     // SingleApplication enforces one process per profile.
     // The instance key is scoped to the active profile name, so
-    // "FinceptTerminal --profile work" and "FinceptTerminal --profile personal"
+    // "QuantumEdgeFlow --profile work" and "QuantumEdgeFlow --profile personal"
     // are treated as two separate primary instances and run simultaneously.
     // allowSecondary=true: secondary instances send "--new-window" and exit.
     const QString profile_key = QString("QuantumEdgeFlow-%1").arg(fincept::ProfileManager::instance().active());
@@ -224,9 +224,9 @@ int main(int argc, char* argv[]) {
     // Also clean legacy v3 DB location
     {
         const QString local_dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        const QString legacy1 = local_dir.section('/', 0, -3) + "/FinceptTerminal/fincept_settings.db";
+        const QString legacy1 = local_dir.section('/', 0, -3) + "/QuantumEdgeFlow/quantumedge_settings.db";
         const QString legacy2 =
-            QString(local_dir).replace("Fincept/FinceptTerminal", "FinceptTerminal") + "/fincept_settings.db";
+            QString(local_dir).replace("QuantumEdge/QuantumEdgeFlow", "QuantumEdgeFlow") + "/quantumedge_settings.db";
         QFile::remove(legacy1 + "-wal");
         QFile::remove(legacy1 + "-shm");
         QFile::remove(legacy2 + "-wal");
@@ -363,8 +363,8 @@ int main(int argc, char* argv[]) {
     }
 
     LOG_INFO("App", "Checking settings for legacy migration...");
-    // One-time migration: copy settings from old DB (Local\FinceptTerminal\fincept_settings.db)
-    // to new DB (Roaming\Fincept\FinceptTerminal\fincept.db) if the new DB has no settings yet.
+    // One-time migration: copy settings from old DB (Local\QuantumEdgeFlow\quantumedge_settings.db)
+    // to new DB (Roaming\Fincept\QuantumEdgeFlow\fincept.db) if the new DB has no settings yet.
     {
         LOG_INFO("App", "Querying settings...");
         auto existing = fincept::SettingsRepository::instance().get("fincept_session");
@@ -372,11 +372,11 @@ int main(int argc, char* argv[]) {
         bool new_db_empty = existing.is_err() || existing.value().isEmpty();
         if (new_db_empty) {
             QString local_base = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-            // AppLocalDataLocation = .../Local/Fincept/FinceptTerminal — strip to .../Local/FinceptTerminal
-            QString old_db_path = local_base.section('/', 0, -3) + "/FinceptTerminal/fincept_settings.db";
+            // AppLocalDataLocation = .../Local/QuantumEdge/QuantumEdgeFlow — strip to .../Local/QuantumEdgeFlow
+            QString old_db_path = local_base.section('/', 0, -3) + "/QuantumEdgeFlow/quantumedge_settings.db";
             if (!QFile::exists(old_db_path)) {
                 // Try without the org subfolder
-                old_db_path = local_base.replace("Fincept/FinceptTerminal", "FinceptTerminal") + "/fincept_settings.db";
+                old_db_path = local_base.replace("QuantumEdge/QuantumEdgeFlow", "QuantumEdgeFlow") + "/quantumedge_settings.db";
             }
             if (QFile::exists(old_db_path)) {
                 QSqlDatabase old_db = QSqlDatabase::addDatabase("QSQLITE", "legacy_migration");

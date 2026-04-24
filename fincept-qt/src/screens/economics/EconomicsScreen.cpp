@@ -86,7 +86,7 @@ static const struct {
     {"wto", "WTO", "#E91E63"},
     {"unesco", "UNESCO", "#00ACC1"},
     {"bea", "BEA", "#E65100"},
-    {"fincept", "Fincept Macro", "#d97706"},
+    {"quantumedge", "Quantum Edge Macro", "#d97706"},
 };
 
 // ── Panel factory ─────────────────────────────────────────────────────────────
@@ -151,7 +151,7 @@ static EconPanelBase* make_panel(const QString& id, QWidget* parent) {
         return new UnescoPanel(parent);
     if (id == "bea")
         return new BeaPanel(parent);
-    if (id == "fincept")
+    if (id == "quantumedge")
         return new FinceptMacroPanel(parent);
     return nullptr;
 }

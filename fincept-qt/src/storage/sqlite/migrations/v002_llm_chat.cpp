@@ -30,9 +30,9 @@ Result<void> apply_v002(QSqlDatabase& db) {
     if (r.is_err())
         return r;
 
-    // Insert default Fincept LLM
+    // Insert default Quantum Edge AI
     sql(db, "INSERT OR IGNORE INTO llm_configs (provider, api_key, base_url, model, is_active) "
-            "VALUES ('fincept', '', 'https://api.quantumedge.business/research/llm', 'fincept-llm', 1)");
+            "VALUES ('fincept', '', 'https://api.quantumedge.business/research/llm', 'quantumedge-llm', 1)");
 
     // ── LLM Global Settings (singleton row) ──────────────────────────────────
     r = sql(db, "CREATE TABLE IF NOT EXISTS llm_global_settings ("

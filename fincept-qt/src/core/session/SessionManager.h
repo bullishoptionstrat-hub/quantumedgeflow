@@ -70,7 +70,7 @@ class SessionManager : public QObject {
   private:
     SessionManager() = default;
     QElapsedTimer elapsed_;
-    mutable QSettings settings_{"Fincept", "FinceptTerminal"};
+    mutable QSettings settings_{"QuantumEdge", "QuantumEdgeFlow"};
 };
 
 } // namespace fincept

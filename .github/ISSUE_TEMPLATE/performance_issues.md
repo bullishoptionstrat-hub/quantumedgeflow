@@ -17,7 +17,7 @@ assignees: ""
 
 ## Environment & Measurements
 - **OS:** (Windows / macOS / Linux)
-- **Fincept Terminal Version:**
+- **Quantum Edge Flow Version:**
 - **Observed behavior:** (e.g., UI froze for 5s, memory jumped to 2GB)
 - **Expected behavior:**
 

@@ -1168,7 +1168,7 @@ void PortfolioScreen::load_demo_portfolio() {
     });
 
     // Create the demo portfolio (emits portfolio_created synchronously)
-    svc.create_portfolio("Demo Portfolio", "Fincept User", "USD", "Sample portfolio for demonstration");
+    svc.create_portfolio("Demo Portfolio", "Quantum Edge User", "USD", "Sample portfolio for demonstration");
 }
 
 QVariantMap PortfolioScreen::save_state() const {

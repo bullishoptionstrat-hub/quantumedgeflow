@@ -233,7 +233,7 @@ AboutScreen::AboutScreen(QWidget* parent) : QWidget(parent) {
             pvl->addWidget(body);
 
             // Footer link
-            auto* foot = new QLabel("support@fincept.in");
+            auto* foot = new QLabel("support@quantumedge.business");
             foot->setStyleSheet(QString("color: %1; font-size: 11px; background: transparent; "
                                         "padding: 6px 14px; border-top: 1px solid %2; "
                                         "font-family: 'Consolas','Courier New',monospace;")
@@ -296,13 +296,13 @@ AboutScreen::AboutScreen(QWidget* parent) : QWidget(parent) {
             QString url;
         };
         const Link links[] = {
-            {"GitHub Repository", "https://github.com/Fincept-Corporation/FinceptTerminal"},
-            {"License (AGPL-3.0)", "https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/LICENSE"},
+            {"GitHub Repository", "https://github.com/bullishoptionstrat-hub/quantumedgeflow"},
+            {"License (AGPL-3.0)", "https://github.com/bullishoptionstrat-hub/quantumedgeflow/blob/main/LICENSE"},
             {"Commercial License",
-             "https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/COMMERCIAL_LICENSE.md"},
-            {"Trademark Policy", "https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/TRADEMARK.md"},
-            {"Contributor CLA", "https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/CLA.md"},
-            {"Official Website", "https://fincept.in"},
+             "https://github.com/bullishoptionstrat-hub/quantumedgeflow/blob/main/docs/COMMERCIAL_LICENSE.md"},
+            {"Trademark Policy", "https://github.com/bullishoptionstrat-hub/quantumedgeflow/blob/main/docs/TRADEMARK.md"},
+            {"Contributor CLA", "https://github.com/bullishoptionstrat-hub/quantumedgeflow/blob/main/docs/CLA.md"},
+            {"Official Website", "https://quantumedge.business"},
         };
 
         for (int i = 0; i < 6; ++i) {
@@ -337,10 +337,10 @@ AboutScreen::AboutScreen(QWidget* parent) : QWidget(parent) {
             QString email;
         };
         const Contact contacts[] = {
-            {"GENERAL", "support@fincept.in"},
-            {"COMMERCIAL", "support@fincept.in"},
-            {"SECURITY", "support@fincept.in"},
-            {"LEGAL", "support@fincept.in"},
+            {"GENERAL", "support@quantumedge.business"},
+            {"COMMERCIAL", "support@quantumedge.business"},
+            {"SECURITY", "support@quantumedge.business"},
+            {"LEGAL", "support@quantumedge.business"},
         };
 
         for (int i = 0; i < 4; ++i) {

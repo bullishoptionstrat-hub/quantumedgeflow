@@ -1,6 +1,6 @@
-# Contributing to Fincept Terminal
+# Contributing to Quantum Edge Flow
 
-Fincept Terminal is a native C++20/Qt6 desktop financial terminal. All contributions are welcome!
+Quantum Edge Flow is a native C++20/Qt6 desktop financial terminal. All contributions are welcome!
 
 ## Ways to Contribute
 
@@ -15,8 +15,8 @@ Fincept Terminal is a native C++20/Qt6 desktop financial terminal. All contribut
 
 ```bash
 # Fork & clone
-git clone https://github.com/your-username/FinceptTerminal.git
-cd FinceptTerminal
+git clone https://github.com/your-username/QuantumEdgeFlow.git
+cd QuantumEdgeFlow
 
 # Automated setup (installs toolchain + Qt 6.7.2 via aqtinstall, then builds)
 ./setup.sh       # Linux / macOS
@@ -45,4 +45,4 @@ git checkout -b feature/your-feature
 2. Link any related issues
 3. Keep changes focused — one feature or fix per PR
 
-Questions? [support@fincept.in](mailto:support@fincept.in) · [Discord](https://discord.gg/ae87a8ygbN)
+Questions? [support@quantumedge.business](mailto:support@quantumedge.business) · [Discord](https://discord.gg/ae87a8ygbN)

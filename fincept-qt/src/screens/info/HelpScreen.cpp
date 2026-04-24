@@ -127,7 +127,7 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
                                  .arg(colors::AMBER(), MF));
         text_vl->addWidget(title);
 
-        auto* sub = new QLabel("Find answers, get support, and connect with the Fincept community.");
+        auto* sub = new QLabel("Find answers, get support, and connect with the Quantum Edge community.");
         sub->setStyleSheet(
             QString("color: %1; font-size: 12px; background: transparent; %2").arg(colors::TEXT_SECONDARY(), MF));
         text_vl->addWidget(sub);
@@ -158,7 +158,7 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
             QObject::connect(chip, &QPushButton::clicked, chip, [url]() { QDesktopServices::openUrl(QUrl(url)); });
             return chip;
         };
-        chips_vl->addWidget(make_chip("✉", "support@fincept.in", colors::CYAN, "mailto:support@fincept.in"));
+        chips_vl->addWidget(make_chip("✉", "support@quantumedge.business", colors::CYAN, "mailto:support@quantumedge.business"));
         chips_vl->addWidget(
             make_chip("💬", "discord.gg/ae87a8ygbN", colors::POSITIVE, "https://discord.gg/ae87a8ygbN"));
         chips_vl->addWidget(make_chip("🕐", "Mon-Fri  9AM–6PM EST", colors::TEXT_TERTIARY));
@@ -269,11 +269,11 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
 
             {"📊", "How do I connect a broker?",
              "Navigate to Settings → Brokers, select your broker from the list, and enter your "
-             "API key and secret. Fincept supports 18+ brokers including Zerodha, Angel One, "
+             "API key and secret. Quantum Edge Flow supports 18+ brokers including Zerodha, Angel One, "
              "Upstox, Interactive Brokers, and more."},
 
             {"🐍", "Why does Python install at first launch?",
-             "Fincept embeds Python for 1300+ analytics scripts covering CFA-level equity, "
+             "Quantum Edge Flow embeds Python for 1300+ analytics scripts covering CFA-level equity, "
              "portfolio, derivatives, and quant analysis. The one-time install is ~150 MB and "
              "happens automatically in the background."},
 
@@ -284,7 +284,7 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
 
             {"🔒", "Is my data secure?",
              "Credentials are stored encrypted via SecureStorage (OS keychain on each platform). "
-             "API keys are never logged or sent to Fincept servers — they are used only for "
+             "API keys are never logged or sent to Quantum Edge servers — they are used only for "
              "direct broker connections from your machine."},
 
             {"🐛", "How do I report a bug?",
@@ -301,7 +301,7 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
 
     // ── Getting Started ────────────────────────────────────────────────────────
     {
-        vl->addWidget(section_header("GETTING STARTED", "New to Fincept? Start here"));
+        vl->addWidget(section_header("GETTING STARTED", "New to Quantum Edge Flow? Start here"));
         vl->addSpacing(8);
 
         struct Step {
@@ -310,7 +310,7 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
             const char* detail;
         };
         const Step steps[] = {
-            {"1", "Create an account", "Register at fincept.in or use the in-app sign-up."},
+            {"1", "Create an account", "Register at quantumedge.business or use the in-app sign-up."},
             {"2", "Complete setup", "The setup wizard installs Python and configures your paths."},
             {"3", "Connect a data source", "Add a broker or enable free data feeds in Data Sources."},
             {"4", "Explore the terminal", "Browse Markets, Research, AI Chat, and QuantLib tabs."},
@@ -377,11 +377,11 @@ HelpScreen::HelpScreen(QWidget* parent) : QWidget(parent) {
             const char* url;
         };
         const Contact contacts[] = {
-            {"✉", "Email Support", "support@fincept.in", "mailto:support@fincept.in"},
+            {"✉", "Email Support", "support@quantumedge.business", "mailto:support@quantumedge.business"},
             {"💬", "Discord Server", "discord.gg/ae87a8ygbN", "https://discord.gg/ae87a8ygbN"},
-            {"🌐", "Website", "fincept.in", "https://fincept.in"},
-            {"📦", "GitHub", "github.com/Fincept-Corporation/FinceptTerminal",
-             "https://github.com/Fincept-Corporation/FinceptTerminal"},
+            {"🌐", "Website", "quantumedge.business", "https://quantumedge.business"},
+            {"📦", "GitHub", "github.com/bullishoptionstrat-hub/quantumedgeflow",
+             "https://github.com/bullishoptionstrat-hub/quantumedgeflow"},
         };
 
         int ci = 0;

@@ -711,7 +711,7 @@ const QVector<ProviderDef>& provider_defs() {
          {
              {"webhook_url", "Webhook URL", "https://your-mattermost.com/hooks/..."},
              {"channel", "Channel", "#town-square (optional)"},
-             {"username", "Username", "Fincept (optional)"},
+             {"username", "Username", "Quantum Edge (optional)"},
          }},
         {"teams",
          "MS Teams",
@@ -881,8 +881,8 @@ QWidget* SettingsScreen::build_notifications() {
             pw.status_lbl->setStyleSheet(QString("color:%1;background:transparent;").arg(ui::colors::TEXT_SECONDARY()));
 
             NotificationRequest req;
-            req.title = "Fincept Test";
-            req.message = "This is a test notification from Fincept Terminal.";
+            req.title = "Quantum Edge Test";
+            req.message = "This is a test notification from Quantum Edge Flow.";
             req.trigger = NotifTrigger::Manual;
 
             QPointer<QLabel> status_ptr = pw.status_lbl;

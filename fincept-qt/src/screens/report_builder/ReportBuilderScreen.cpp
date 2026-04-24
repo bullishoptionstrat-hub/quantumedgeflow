@@ -686,7 +686,7 @@ bool ReportBuilderScreen::deserialize_from_json(const QString& json) {
         QJsonObject m = root["metadata"].toObject();
         metadata_.title = m.value("title").toString("Untitled Report");
         metadata_.author = m.value("author").toString("Analyst");
-        metadata_.company = m.value("company").toString("Fincept Corporation");
+        metadata_.company = m.value("company").toString("Quantum Edge");
         metadata_.date = m.value("date").toString();
         metadata_.header_left = m.value("header_left").toString();
         metadata_.header_center = m.value("header_center").toString();
@@ -739,7 +739,7 @@ bool ReportBuilderScreen::deserialize_from_json(const QString& json) {
 // ── Recent files ──────────────────────────────────────────────────────────────
 
 void ReportBuilderScreen::update_recent(const QString& path) {
-    QSettings s("Fincept", "FinceptTerminal");
+    QSettings s("QuantumEdge", "QuantumEdgeFlow");
     QStringList recent = s.value("report_builder/recent").toStringList();
     recent.removeAll(path);
     recent.prepend(path);
@@ -749,7 +749,7 @@ void ReportBuilderScreen::update_recent(const QString& path) {
 }
 
 QStringList ReportBuilderScreen::load_recent() const {
-    QSettings s("Fincept", "FinceptTerminal");
+    QSettings s("QuantumEdge", "QuantumEdgeFlow");
     return s.value("report_builder/recent").toStringList();
 }
 
@@ -1899,7 +1899,7 @@ void ReportBuilderScreen::on_new() {
 }
 
 void ReportBuilderScreen::on_open() {
-    QString path = QFileDialog::getOpenFileName(this, "Open Report", "", "Fincept Report (*.fincept);;JSON (*.json)");
+    QString path = QFileDialog::getOpenFileName(this, "Open Report", "", "Quantum Edge Report (*.qef);;JSON (*.json)");
     if (path.isEmpty())
         return;
     load_report(path);
@@ -1909,7 +1909,7 @@ void ReportBuilderScreen::on_save() {
     QString path = current_file_;
     if (path.isEmpty()) {
         path = QFileDialog::getSaveFileName(this, "Save Report", metadata_.title,
-                                            "Fincept Report (*.fincept);;JSON (*.json)");
+                                            "Quantum Edge Report (*.qef);;JSON (*.json)");
         if (path.isEmpty())
             return;
         current_file_ = path;
@@ -1931,7 +1931,7 @@ void ReportBuilderScreen::on_save() {
 void ReportBuilderScreen::on_auto_save() {
     if (autosave_path_.isEmpty()) {
         autosave_path_ =
-            QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/fincept_report_autosave.fincept";
+            QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/quantumedge_report_autosave.qef";
     }
     QFile f(autosave_path_);
     if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
