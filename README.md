@@ -48,13 +48,13 @@ State-of-the-art financial intelligence platform with CFA-level analytics, AI au
 <!-- DOWNLOAD-TABLE-START -->
 ### Option 1 — Download Installer (Recommended)
 
-Latest release: **v4.0.3** — [View all releases](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/tag/v4.0.3)
+Latest release: **v4.0.5** — [View all releases](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/tag/v4.0.5)
 
 | Platform | Download | Run |
 |----------|----------|-----|
-| **Windows x64** | [QuantumEdgeFlow-Windows-x64-setup.exe](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.3/QuantumEdgeFlow-4.0.3-windows-x64-setup.exe) | Run installer → launch `QuantumEdgeFlow.exe` |
-| **Linux x64** | [QuantumEdgeFlow-Linux-x64.run](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.3/QuantumEdgeFlow-4.0.3-linux-x64-setup.run) | `chmod +x` → run installer |
-| **macOS Apple Silicon** | [QuantumEdgeFlow-macOS-arm64.dmg](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.3/QuantumEdgeFlow-4.0.3-macos-arm64-setup.dmg) | Open DMG → drag to Applications |
+| **Windows x64** | [QuantumEdgeFlow-Windows-x64-setup.exe](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.5/QuantumEdgeFlow-4.0.4-windows-x64-setup.exe) | Run installer → launch `QuantumEdgeFlow.exe` |
+| **Linux x64** | [QuantumEdgeFlow-Linux-x64.run](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.5/QuantumEdgeFlow-4.0.4-linux-x64-setup.run) | `chmod +x` → run installer |
+| **macOS Apple Silicon** | [QuantumEdgeFlow-macOS-arm64.dmg](https://github.com/bullishoptionstrat-hub/quantumedgeflow/releases/download/v4.0.5/QuantumEdgeFlow-4.0.4-macos-arm64-setup.dmg) | Open DMG → drag to Applications |
 <!-- DOWNLOAD-TABLE-END -->
 
 ---
