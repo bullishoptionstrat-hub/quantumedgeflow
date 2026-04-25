@@ -297,6 +297,18 @@ class LoginRequest(BaseModel):
 def login(req: LoginRequest):
     db = get_db()
     user = db.execute("SELECT * FROM users WHERE email = ?", (req.email.lower(),)).fetchone()
+
+    # Founder auto-provision: if account doesn't exist yet, create it on first login
+    if not user and req.email.lower() == FOUNDER_EMAIL.lower():
+        founder_id = str(uuid.uuid4())
+        db.execute(
+            "INSERT INTO users (id, email, username, password_hash, account_type, credit_balance, is_verified, created_at, phone, country, country_code) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            (founder_id, FOUNDER_EMAIL.lower(), "Founder", hash_password(req.password),
+             "pro", 999999, 1, now_iso(), "", "", "")
+        )
+        db.commit()
+        user = db.execute("SELECT * FROM users WHERE email = ?", (FOUNDER_EMAIL.lower(),)).fetchone()
+
     if not user or not verify_password(req.password, user["password_hash"]):
         db.close()
         raise HTTPException(401, "Invalid email or password")
