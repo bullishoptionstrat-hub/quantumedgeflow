@@ -55,6 +55,20 @@ function Component()
 
 Component.prototype.createOperations = function()
 {
+    // ── Drive-root guard ─────────────────────────────────────────────────────
+    // If the user typed a bare drive letter (e.g. H:) as the install folder,
+    // Qt plugin subdirectories (styles/, networkinformation/, etc.) would be
+    // extracted to H:styles which Windows cannot create. Auto-append the
+    // app subfolder so extraction always lands inside a proper directory.
+    if (systemInfo.kernelType === "winnt") {
+        var target = installer.value("TargetDir");
+        if (/^[A-Za-z]:[\/]*$/.test(target)) {
+            var fixed = target.replace(/[\/]+$/, "") + "\QuantumEdgeFlow";
+            console.log("[Quantum Edge] Drive-root install path detected. Redirecting: " + target + " -> " + fixed);
+            installer.setValue("TargetDir", fixed);
+        }
+    }
+
     // Always call base first so file extraction happens.
     component.createOperations();
 
