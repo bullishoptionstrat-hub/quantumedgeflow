@@ -2157,7 +2157,7 @@ if(FINCEPT_BUILD_INSTALLER)
     set(CPACK_PACKAGE_HOMEPAGE_URL
         "https://github.com/bullishoptionstrat-hub/quantumedgeflow")
     set(CPACK_RESOURCE_FILE_LICENSE
-        "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.fincept.terminal.core/meta/license.txt")
+        "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.quantumedgeflow.terminal.core/meta/license.txt")
     set(CPACK_PACKAGE_ICON
         "${CMAKE_CURRENT_SOURCE_DIR}/resources/fincept.ico")
 
@@ -2189,7 +2189,7 @@ if(FINCEPT_BUILD_INSTALLER)
     set(CPACK_IFW_PACKAGE_START_MENU_DIRECTORY "Quantum Edge Flow")
     set(CPACK_IFW_PACKAGE_ICON
         "${CMAKE_CURRENT_SOURCE_DIR}/resources/fincept.ico")
-    set(CPACK_IFW_PACKAGE_MAINTENANCE_TOOL_NAME "FinceptMaintenanceTool")
+    set(CPACK_IFW_PACKAGE_MAINTENANCE_TOOL_NAME "QuantumEdgeMaintenanceTool")
     set(CPACK_IFW_PACKAGE_WIZARD_STYLE "Modern")
     set(CPACK_IFW_PACKAGE_ALLOW_SPACE_IN_PATH ON)
     set(CPACK_IFW_PACKAGE_ALLOW_NON_ASCII_CHARACTERS ON)
@@ -2265,20 +2265,20 @@ if(FINCEPT_BUILD_INSTALLER)
 
     # ── CPackIFW component configuration ─────────────────────────────────────
     cpack_ifw_configure_component(core
-        NAME "com.fincept.terminal.core"
+        NAME "com.quantumedgeflow.terminal.core"
         VERSION "${CMAKE_PROJECT_VERSION}"
-        SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.fincept.terminal.core/meta/installscript.qs"
-        LICENSES "AGPL-3.0" "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.fincept.terminal.core/meta/license.txt"
+        SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.quantumedgeflow.terminal.core/meta/installscript.qs"
+        LICENSES "AGPL-3.0" "${CMAKE_CURRENT_SOURCE_DIR}/packaging/installer/packages/com.quantumedgeflow.terminal.core/meta/license.txt"
         SORTING_PRIORITY 100
         DEFAULT TRUE
         FORCED_INSTALLATION)
 
     cpack_ifw_configure_component(scripts
-        NAME "com.fincept.terminal.scripts"
+        NAME "com.quantumedgeflow.terminal.scripts"
         VERSION "${CMAKE_PROJECT_VERSION}"
         SORTING_PRIORITY 50
         DEFAULT TRUE
-        DEPENDS "com.fincept.terminal.core")
+        DEPENDS "com.quantumedgeflow.terminal.core")
 
 endif() # FINCEPT_BUILD_INSTALLER
 
