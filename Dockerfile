@@ -6,7 +6,7 @@ FROM debian:12-slim AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG QT_VERSION=6.8.3
-ARG QT_ARCH=gcc_64
+ARG QT_ARCH=linux_gcc_64
 
 # Build toolchain + Qt runtime system deps (for Qt to link against)
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -54,7 +54,7 @@ FROM debian:12-slim AS runtime
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG QT_VERSION=6.8.3
-ARG QT_ARCH=gcc_64
+ARG QT_ARCH=linux_gcc_64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
