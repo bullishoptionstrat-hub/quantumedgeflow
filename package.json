@@ -1,1 +1,17 @@
-{}
+{
+  "name": "quantumedgeflow",
+  "version": "1.0.0",
+  "description": "Quantum Edge Flow - Professional Financial Terminal",
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bullishoptionstrat-hub/quantumedgeflow"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE"
+}
