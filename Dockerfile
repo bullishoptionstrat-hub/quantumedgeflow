@@ -32,7 +32,7 @@ ENV QT_ROOT=/opt/Qt
 RUN pip3 install --break-system-packages --no-cache-dir aqtinstall \
     && python3 -m aqt install-qt linux desktop ${QT_VERSION} ${QT_ARCH} \
         --outputdir ${QT_ROOT} \
-        --modules qtcharts qtwebsockets qtmultimedia qtmultimediawidgets qtspeech
+        --modules qtcharts qtwebsockets qtmultimedia qtspeech
 
 ENV CMAKE_PREFIX_PATH="${QT_ROOT}/${QT_VERSION}/${QT_ARCH}"
 ENV PATH="${CMAKE_PREFIX_PATH}/bin:${PATH}"
